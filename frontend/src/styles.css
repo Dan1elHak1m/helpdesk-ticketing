@@ -490,3 +490,162 @@ tbody tr:hover {
   font-size: 14px;
   color: var(--text-muted);
 }
+
+.ticket-link {
+  color: var(--text-main);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.ticket-link:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+.detail-back {
+  margin-bottom: 16px;
+}
+
+.back-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.back-link:hover {
+  color: var(--text-main);
+}
+
+.card-wide {
+  max-width: none;
+  margin-bottom: 24px;
+}
+
+.detail-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.detail-title {
+  margin: 4px 0 0;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.detail-badges {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.detail-desc {
+  margin: 16px 0 20px;
+  color: #334155;
+  white-space: pre-line;
+}
+
+.meta-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 28px;
+  padding: 12px 16px;
+  background: var(--bg-subtle);
+  border-radius: var(--radius-md);
+  font-size: 13.5px;
+  color: #475569;
+}
+
+.controls {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+.controls .field {
+  min-width: 210px;
+}
+
+.comments-section {
+  margin-top: 8px;
+}
+
+.section-heading {
+  margin: 24px 0 12px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.comment {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  margin-bottom: 10px;
+  box-shadow: var(--shadow-sm);
+}
+
+.comment-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13.5px;
+}
+
+.comment-meta small {
+  color: var(--text-muted);
+}
+
+.comment p {
+  margin: 8px 0 0;
+  color: #334155;
+  font-size: 14px;
+}
+
+.comment-empty p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.comment-form {
+  margin-top: 16px;
+  padding: 20px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.stat-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.stat-num {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--primary);
+  line-height: 1.1;
+}
+
+.stat-label {
+  margin-top: 6px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text-muted);
+}

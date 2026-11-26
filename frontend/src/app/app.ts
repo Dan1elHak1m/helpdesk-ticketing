@@ -1,3 +1,4 @@
+
 import { Component, inject } from '@angular/core';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from './core/auth.service';
@@ -15,16 +16,44 @@ import { AuthService } from './core/auth.service';
 
         @if (auth.loggedIn()) {
           <nav class="nav-links">
-            <a routerLink="/tickets" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-link">
+            <a
+              routerLink="/tickets"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              class="nav-link"
+            >
               Tickets
             </a>
-            <a routerLink="/tickets/new" routerLinkActive="active" class="nav-link">
+
+            @if (auth.isStaff()) {
+              <a
+                routerLink="/dashboard"
+                routerLinkActive="active"
+                class="nav-link"
+              >
+                Dashboard
+              </a>
+            }
+
+            <a
+              routerLink="/tickets/new"
+              routerLinkActive="active"
+              class="nav-link"
+            >
               New Request
             </a>
+
             @if (auth.role()) {
               <span class="role-pill">{{ auth.role() }}</span>
             }
-            <button type="button" class="btn-logout" (click)="auth.logout()">Sign out</button>
+
+            <button
+              type="button"
+              class="btn-logout"
+              (click)="auth.logout()"
+            >
+              Sign out
+            </button>
           </nav>
         }
       </div>
