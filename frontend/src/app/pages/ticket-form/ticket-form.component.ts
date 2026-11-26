@@ -7,32 +7,54 @@ import { TicketService } from '../../services/ticket.service';
   selector: 'app-ticket-form',
   imports: [ReactiveFormsModule, RouterLink],
   template: `
-    <div class="card">
-      <h2>New ticket</h2>
+    <div class="card card-form">
+      <div class="card-header">
+        <h2>Submit a Support Request</h2>
+        <p>Provide clear details so our support team can route and resolve your issue quickly.</p>
+      </div>
+
       <form [formGroup]="form" (ngSubmit)="submit()">
-        <label>Title</label>
-        <input formControlName="title" />
-        @if (c.title.touched && c.title.invalid) {
-          <small class="err">Title is required (at least 5 characters)</small>
+        <div class="field">
+          <label for="title">Subject</label>
+          <input id="title" placeholder="Brief summary of the issue" formControlName="title" />
+          @if (c.title.touched && c.title.invalid) {
+            <small class="err">Subject is required (at least 5 characters)</small>
+          }
+        </div>
+
+        <div class="field">
+          <label for="priority">Priority level</label>
+          <select id="priority" formControlName="priority">
+            <option value="low">Low — Minor question or cosmetic issue</option>
+            <option value="medium">Medium — Standard support request</option>
+            <option value="high">High — Workflow blocked or degraded</option>
+            <option value="urgent">Urgent — Critical system outage</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="description">Description</label>
+          <textarea
+            id="description"
+            rows="5"
+            placeholder="Include steps to reproduce, error messages, or affected systems..."
+            formControlName="description"
+          ></textarea>
+          @if (c.description.touched && c.description.invalid) {
+            <small class="err">Description is required (at least 10 characters)</small>
+          }
+        </div>
+
+        @if (error()) {
+          <p class="alert-err">{{ error() }}</p>
         }
 
-        <label>Description</label>
-        <textarea rows="5" formControlName="description"></textarea>
-        @if (c.description.touched && c.description.invalid) {
-          <small class="err">Description is required (at least 10 characters)</small>
-        }
-
-        <label>Priority</label>
-        <select formControlName="priority">
-          <option value="low">Low</option>
-          <option value="medium">Medium</option>
-          <option value="high">High</option>
-          <option value="urgent">Urgent</option>
-        </select>
-
-        @if (error()) { <p class="err">{{ error() }}</p> }
-        <button type="submit" [disabled]="form.invalid || saving()">Submit ticket</button>
-        <a routerLink="/tickets">Cancel</a>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary" [disabled]="form.invalid || saving()">
+            {{ saving() ? 'Submitting...' : 'Submit request' }}
+          </button>
+          <a routerLink="/tickets" class="btn btn-secondary">Cancel</a>
+        </div>
       </form>
     </div>
   `,
@@ -60,7 +82,7 @@ export class TicketFormComponent {
     this.svc.create(this.form.getRawValue()).subscribe({
       next: () => this.router.navigate(['/tickets']),
       error: () => {
-        this.error.set('Could not save the ticket');
+        this.error.set('Could not save the ticket. Please try again.');
         this.saving.set(false);
       },
     });
